@@ -1,4 +1,4 @@
-// Main includes
+// Butano includes
 #include "bn_core.h"
 #include "bn_keypad.h"
 #include "bn_sprite_ptr.h"
@@ -27,10 +27,25 @@
 // WAV Audio
 #include "bn_sound_items.h"
 
+// Constants
+const unsigned char SCREEN_WIDTH = 240;
+const unsigned char SCREEN_HEIGHT = 160;
+const unsigned char COOMER_SPRITEWIDTH = 64;
+const unsigned char COOMER_SPRITEWIDTH_HALF = COOMER_SPRITEWIDTH / 2;
+
 int main()
 {
     // Begin
     bn::core::init();
+
+    // Initialise background image
+    bn::regular_bg_ptr background = bn::regular_bg_items::back.create_bg(0, 0);
+
+    // Initialise Coomer closed sprite
+    bn::sprite_ptr coomerTL = bn::sprite_items::coomerclosed_tl.create_sprite(-COOMER_SPRITEWIDTH_HALF,-COOMER_SPRITEWIDTH_HALF);
+    bn::sprite_ptr coomerTR = bn::sprite_items::coomerclosed_tr.create_sprite(COOMER_SPRITEWIDTH_HALF,-COOMER_SPRITEWIDTH_HALF);
+    bn::sprite_ptr coomerBR = bn::sprite_items::coomerclosed_br.create_sprite(COOMER_SPRITEWIDTH_HALF,COOMER_SPRITEWIDTH_HALF);
+    bn::sprite_ptr coomerBL = bn::sprite_items::coomerclosed_bl.create_sprite(-COOMER_SPRITEWIDTH_HALF,COOMER_SPRITEWIDTH_HALF);
 
     // Main loop
     while(true)
