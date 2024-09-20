@@ -9,7 +9,21 @@
 
 // --Asset Includes--
 // Sprites
+#include "bn_sprite_items_cross.h"
+#include "bn_sprite_items_pistol.h"
+#include "bn_sprite_items_pizza.h"
+#include "bn_sprite_items_playcoin.h"
+#include "bn_sprite_items_soda.h"
+#include "bn_sprite_items_coomerclosed_tl.h"
+#include "bn_sprite_items_coomerclosed_tr.h"
+#include "bn_sprite_items_coomerclosed_bl.h"
+#include "bn_sprite_items_coomerclosed_br.h"
+#include "bn_sprite_items_coomeropen_tl.h"
+#include "bn_sprite_items_coomeropen_tr.h"
+#include "bn_sprite_items_coomeropen_bl.h"
+#include "bn_sprite_items_coomeropen_br.h"
 // Backgrounds
+#include "bn_regular_bg_items_back.h"
 // WAV Audio
 #include "bn_sound_items.h"
 
@@ -17,8 +31,6 @@ int main()
 {
     // Begin
     bn::core::init();
-
-    bn::sound_items::hellogordan.play();
 
     // Main loop
     while(true)
