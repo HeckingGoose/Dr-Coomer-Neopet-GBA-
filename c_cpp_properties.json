@@ -2,7 +2,8 @@
     {
         "name": "Default",
         "includePath": [
-            "/butano"
+            "/butano",
+            "/include"
         ]
     }
 ]
