@@ -7,6 +7,9 @@
 #include "bn_sprite_palette_item.h"
 #include "bn_sprite_palette_ptr.h"
 
+// Extra includes
+#include "LargeSprite.h"
+
 // --Asset Includes--
 // Sprites
 #include "bn_sprite_items_cross.h"
