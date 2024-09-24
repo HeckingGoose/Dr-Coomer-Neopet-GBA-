@@ -10,21 +10,15 @@ LargeSprite::LargeSprite(
     bn::sprite_ptr TR,
     bn::sprite_ptr BL,
     bn::sprite_ptr BR
-    )
+    ) : _sprite_TL(TL),
+    _sprite_TR(TR),
+    _sprite_BL(BL),
+    _sprite_BR(BR),
+    _position(position),
+    _spriteWidth(spriteWidth)
 {
-    // Store sprites
-    setSprites(
-        TL,
-        TR,
-        BL,
-        BR
-    );
-
-    // Store sprite width
-    setSpriteWidth(spriteWidth);
-
-    // Store position
-    setPosition(position);
+    // Correct sprite positions
+    setPosition(_position);
 }
 
 // Methods

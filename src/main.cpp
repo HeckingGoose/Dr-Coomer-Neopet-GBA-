@@ -44,20 +44,17 @@ int main()
     // Initialise background image
     bn::regular_bg_ptr background = bn::regular_bg_items::back.create_bg(0, 0);
 
-    // Initialise Coomer closed sprite
-    bn::sprite_ptr coomerTL = bn::sprite_items::coomerclosed_tl.create_sprite(-COOMER_SPRITEWIDTH_HALF,-COOMER_SPRITEWIDTH_HALF);
-    bn::sprite_ptr coomerTR = bn::sprite_items::coomerclosed_tr.create_sprite(COOMER_SPRITEWIDTH_HALF,-COOMER_SPRITEWIDTH_HALF);
-    bn::sprite_ptr coomerBR = bn::sprite_items::coomerclosed_br.create_sprite(COOMER_SPRITEWIDTH_HALF,COOMER_SPRITEWIDTH_HALF);
-    bn::sprite_ptr coomerBL = bn::sprite_items::coomerclosed_bl.create_sprite(-COOMER_SPRITEWIDTH_HALF,COOMER_SPRITEWIDTH_HALF);
-
+    // Initialise Coomer (as closed)
     LargeSprite coomer = LargeSprite(
         bn::fixed_point(0,0),
         COOMER_SPRITEWIDTH,
         bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
         bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
-        bn::sprite_items::coomerclosed_br.create_sprite(0,0),
-        bn::sprite_items::coomerclosed_bl.create_sprite(0,0)
+        bn::sprite_items::coomerclosed_bl.create_sprite(0,0),
+        bn::sprite_items::coomerclosed_br.create_sprite(0,0)
         );
+
+    coomer.setPosition(bn::fixed_point(-50,0));
 
     // Main loop
     while(true)
