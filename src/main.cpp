@@ -54,8 +54,6 @@ int main()
         bn::sprite_items::coomerclosed_br.create_sprite(0,0)
         );
 
-    coomer.setPosition(bn::fixed_point(-50,0));
-
     // Main loop
     while(true)
     {
