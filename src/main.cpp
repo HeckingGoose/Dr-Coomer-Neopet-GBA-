@@ -50,6 +50,15 @@ int main()
     bn::sprite_ptr coomerBR = bn::sprite_items::coomerclosed_br.create_sprite(COOMER_SPRITEWIDTH_HALF,COOMER_SPRITEWIDTH_HALF);
     bn::sprite_ptr coomerBL = bn::sprite_items::coomerclosed_bl.create_sprite(-COOMER_SPRITEWIDTH_HALF,COOMER_SPRITEWIDTH_HALF);
 
+    LargeSprite coomer = LargeSprite(
+        bn::fixed_point(0,0),
+        COOMER_SPRITEWIDTH,
+        bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
+        bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
+        bn::sprite_items::coomerclosed_br.create_sprite(0,0),
+        bn::sprite_items::coomerclosed_bl.create_sprite(0,0)
+        );
+
     // Main loop
     while(true)
     {
