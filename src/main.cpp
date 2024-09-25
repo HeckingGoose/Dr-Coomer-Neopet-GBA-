@@ -54,6 +54,12 @@ int main()
         bn::sprite_items::coomerclosed_br.create_sprite(0,0)
         );
 
+
+    // Play hello gordan welcome audio
+    bn::sound_handle helloGordan = bn::sound_items::hellogordan.play();
+
+    // helloGordan.active() <- true when playing (i think)
+
     // Main loop
     while(true)
     {
