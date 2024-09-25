@@ -1,8 +1,7 @@
 // Includes
 #include "LargeSprite.h"
 
-// LargeSprite class implementation
-// Constructor
+// Main constructor for LargeSprite
 LargeSprite::LargeSprite(
     bn::fixed_point position,
     unsigned char spriteWidth,
@@ -21,7 +20,7 @@ LargeSprite::LargeSprite(
     setPosition(_position);
 }
 
-// Methods
+// Given a position, stores the position and sets the position of all sub-sprites accordingly
 void LargeSprite::setPosition(bn::fixed_point position)
 {
     // Cache half of sprite width
@@ -55,12 +54,14 @@ void LargeSprite::setPosition(bn::fixed_point position)
     _sprite_BL.set_position(position);
 }
 
+// Returns the currently stored position
 bn::fixed_point LargeSprite::getPosition()
 {
     // Return position directly
     return _position;
 }
 
+// Replaces the current set of sub-sprites with the new set provided as parameters
 void LargeSprite::setSprites(
     bn::sprite_ptr TL,
     bn::sprite_ptr TR,
@@ -75,6 +76,7 @@ void LargeSprite::setSprites(
     _sprite_BR = BR;
 }
 
+// Stores the width provided (used to calculate offsets for sprites when position is set)
 void LargeSprite::setSpriteWidth(unsigned char spriteWidth)
 {
     // Pass in width directly

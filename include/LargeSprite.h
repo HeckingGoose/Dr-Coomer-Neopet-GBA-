@@ -5,7 +5,7 @@
 #include "bn_core.h"
 #include "bn_sprite_ptr.h"
 
-// LargeSprite Class definition
+// Class for managing sprites made out of a 2x2 grid of sub-sprites.
 class LargeSprite
 {
     // Public members
