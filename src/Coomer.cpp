@@ -7,5 +7,16 @@ Coomer::Coomer(
     ) : _sprite(sprite)
 {
     // Set current sound handle to be null
-    _soundEffect = nullptr;
+    _soundEffect = ?;
+}
+
+void Coomer::setSoundEffect(bn::sound_handle handle)
+{
+    // Set value directly
+    _soundEffect = handle;
+}
+
+void Coomer::update()
+{
+    // Do stuff
 }

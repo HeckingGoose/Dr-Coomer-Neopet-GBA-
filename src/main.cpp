@@ -9,6 +9,7 @@
 
 // Extra includes
 #include "LargeSprite.h"
+#include "Coomer.h"
 
 // --Asset Includes--
 // Sprites
@@ -45,24 +46,28 @@ int main()
     bn::regular_bg_ptr background = bn::regular_bg_items::back.create_bg(0, 0);
 
     // Initialise Coomer (as closed)
-    LargeSprite coomer = LargeSprite(
-        bn::fixed_point(0,0),
-        COOMER_SPRITEWIDTH,
-        bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
-        bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
-        bn::sprite_items::coomerclosed_bl.create_sprite(0,0),
-        bn::sprite_items::coomerclosed_br.create_sprite(0,0)
+    Coomer coomer = Coomer(
+        LargeSprite(
+            bn::fixed_point(0,0),
+            COOMER_SPRITEWIDTH,
+            bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
+            bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
+            bn::sprite_items::coomerclosed_bl.create_sprite(0,0),
+            bn::sprite_items::coomerclosed_br.create_sprite(0,0)
+            )
         );
 
-
-    // Play hello gordan welcome audio
-    bn::sound_handle helloGordan = bn::sound_items::hellogordan.play();
+    // Play hello gordan welcome audio and pass sound reference to coomer
+    coomer.setSoundEffect(bn::sound_items::hellogordan.play());
 
     // helloGordan.active() <- true when playing (i think)
 
     // Main loop
     while(true)
     {
+        // Run Coomer update method
+        coomer.update();
+
         // Update window
         bn::core::update();
     }
