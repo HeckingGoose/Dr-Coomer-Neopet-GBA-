@@ -35,7 +35,6 @@
 const unsigned char SCREEN_WIDTH = 240;
 const unsigned char SCREEN_HEIGHT = 160;
 const unsigned char COOMER_SPRITEWIDTH = 64;
-const unsigned char COOMER_SPRITEWIDTH_HALF = COOMER_SPRITEWIDTH / 2;
 
 int main()
 {
@@ -54,7 +53,16 @@ int main()
             bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
             bn::sprite_items::coomerclosed_bl.create_sprite(0,0),
             bn::sprite_items::coomerclosed_br.create_sprite(0,0)
-            )
+            ),
+        LargeSprite(
+            bn::fixed_point(-300, -300),
+            COOMER_SPRITEWIDTH,
+            bn::sprite_items::coomeropen_tl.create_sprite(0,0),
+            bn::sprite_items::coomeropen_tr.create_sprite(0,0),
+            bn::sprite_items::coomeropen_bl.create_sprite(0,0),
+            bn::sprite_items::coomeropen_br.create_sprite(0,0)
+            ),
+            60
         );
 
     // Play hello gordan welcome audio and pass sound reference to coomer
