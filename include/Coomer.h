@@ -22,7 +22,7 @@ class Coomer
     private:
     // Variables
     LargeSprite _sprite;
-    bn::sound_handle _soundEffect;
+    bn::sound_handle* _soundEffect;
     bool _mouthState;
 
     // Methods
