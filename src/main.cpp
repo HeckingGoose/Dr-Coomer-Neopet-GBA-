@@ -62,11 +62,12 @@ int main()
             bn::sprite_items::coomeropen_bl.create_sprite(0,0),
             bn::sprite_items::coomeropen_br.create_sprite(0,0)
             ),
-            60
+            7
         );
 
     // Play hello gordan welcome audio and pass sound reference to coomer
-    coomer.setSoundEffect(bn::sound_items::hellogordan.play());
+    bn::sound_handle soundHandle = bn::sound_items::hellogordan.play();
+    coomer._soundEffect = &soundHandle;
 
     // helloGordan.active() <- true when playing (i think)
 

@@ -17,7 +17,7 @@ class Coomer
         LargeSprite openSprite,
         unsigned int mouthTimerMax
     );
-    void setSoundEffect(bn::sound_handle handle);
+    bn::sound_handle* _soundEffect;
     void update();
 
     // Private Members
@@ -25,13 +25,12 @@ class Coomer
     // Variables
     LargeSprite _closedSprite;
     LargeSprite _openSprite;
-    bn::sound_handle* _soundEffect;
     bool _mouthState;
     unsigned int _mouthTimer;
     unsigned int _mouthTimerMax;
 
     // Methods
-    void swapSprite();
+    void swapState();
 };
 
 #endif
