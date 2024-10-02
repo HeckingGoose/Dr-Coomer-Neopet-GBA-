@@ -26,6 +26,8 @@
 #include "bn_sprite_items_coomeropen_tr.h"
 #include "bn_sprite_items_coomeropen_bl.h"
 #include "bn_sprite_items_coomeropen_br.h"
+#include "bn_sprite_items_buttona.h"
+#include "bn_sprite_items_buttona_pressed.h"
 // Backgrounds
 #include "bn_regular_bg_items_back.h"
 // WAV Audio
@@ -47,7 +49,7 @@ int main()
     // Initialise Coomer (as closed)
     Coomer coomer = Coomer(
         LargeSprite(
-            bn::fixed_point(0,0),
+            bn::fixed_point(0,-10),
             COOMER_SPRITEWIDTH,
             bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
             bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
@@ -69,6 +71,9 @@ int main()
     bn::sound_handle soundHandle = bn::sound_items::hellogordan.play();
     coomer._soundEffect = &soundHandle;
 
+    // Create A button
+    bn::sprite_ptr buttonASprite = bn::sprite_items::buttona.create_sprite(0, 50);
+
     // helloGordan.active() <- true when playing (i think)
 
     // Main loop
@@ -76,6 +81,25 @@ int main()
     {
         // Run Coomer update method
         coomer.update();
+
+        // Check if A is held
+        if (bn::keypad::a_held())
+        {
+            // If this is the first frame
+            if (bn::keypad::a_pressed())
+            {
+                // Do stuff
+            }
+
+            // Swap the 'A' sprite to be held
+            buttonASprite = bn::sprite_items::buttona_pressed.create_sprite(0, 64);
+        }
+        // Otherwise
+        else
+        {
+            // Swap the 'A' sprite to be released
+            buttonASprite = bn::sprite_items::buttona.create_sprite(0, 64);
+        }
 
         // Update window
         bn::core::update();
