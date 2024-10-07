@@ -5,6 +5,7 @@
 #include "bn_core.h"
 #include "bn_sound_items.h"
 #include "LargeSprite.h"
+#include "HandyConstants.h"
 
 // Coomer class definition
 class Coomer

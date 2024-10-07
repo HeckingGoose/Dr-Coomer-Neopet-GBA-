@@ -9,6 +9,7 @@
 
 // Extra includes
 #include "LargeSprite.h"
+#include "HandyConstants.h"
 #include "Coomer.h"
 
 // --Asset Includes--
@@ -33,10 +34,11 @@
 // WAV Audio
 #include "bn_sound_items.h"
 
-// Constants
-const unsigned char SCREEN_WIDTH = 240;
-const unsigned char SCREEN_HEIGHT = 160;
+// Const
 const unsigned char COOMER_SPRITEWIDTH = 64;
+
+// Var
+unsigned int _playcoins = 0;
 
 int main()
 {
@@ -74,8 +76,6 @@ int main()
     // Create A button
     bn::sprite_ptr buttonASprite = bn::sprite_items::buttona.create_sprite(0, 50);
 
-    // helloGordan.active() <- true when playing (i think)
-
     // Main loop
     while(true)
     {
@@ -88,7 +88,8 @@ int main()
             // If this is the first frame
             if (bn::keypad::a_pressed())
             {
-                // Do stuff
+                // Increment total playcoin count
+                _playcoins++;
             }
 
             // Swap the 'A' sprite to be held
