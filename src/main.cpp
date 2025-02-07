@@ -53,10 +53,17 @@ bool _bPressed = false;
 bool _thirstyAvailable = true;
 unsigned long _ticker;
 
-int main()
+// GAME VALUES
+short _hungerValue = DEFAULT_STAT;
+short _thirstValue = DEFAULT_STAT;
+short _happinessValue = DEFAULT_STAT;
+short _playcoinsValue = 0;
+
+// Methods
+void Run_Main()
 {
-    // Begin
-    bn::core::init();
+    // Start by initialising this scene
+    bool goingToShop = false;
 
     // Initialise background image
     bn::regular_bg_ptr background = bn::regular_bg_items::back.create_bg(0, 0);
@@ -65,10 +72,10 @@ int main()
     bn::sprite_text_generator textGen(common::variable_8x16_sprite_font);
 
     // Make text displays
-    TextDisplay hungerText = TextDisplay(bn::string_view("Hunger: "), DEFAULT_STAT, STATS_ROOT_X, STATS_ROOT_Y, &textGen);
-    TextDisplay thirstText = TextDisplay(bn::string_view("Thirst: "), DEFAULT_STAT, STATS_ROOT_X, STATS_ROOT_Y + 20, &textGen);
-    TextDisplay happinessText = TextDisplay(bn::string_view("Happiness: "), DEFAULT_STAT, STATS_ROOT_X, STATS_ROOT_Y + 40, &textGen);
-    TextDisplay playcoinsText = TextDisplay(bn::string_view("Playcoins: "), 0, STATS_ROOT_X, STATS_ROOT_Y + 60, 0, 20000, &textGen);
+    TextDisplay hungerText = TextDisplay(bn::string_view("Hunger: "), _hungerValue, STATS_ROOT_X, STATS_ROOT_Y, &textGen);
+    TextDisplay thirstText = TextDisplay(bn::string_view("Thirst: "), _thirstValue, STATS_ROOT_X, STATS_ROOT_Y + 20, &textGen);
+    TextDisplay happinessText = TextDisplay(bn::string_view("Happiness: "), _happinessValue, STATS_ROOT_X, STATS_ROOT_Y + 40, &textGen);
+    TextDisplay playcoinsText = TextDisplay(bn::string_view("Playcoins: "), _playcoinsValue, STATS_ROOT_X, STATS_ROOT_Y + 60, 0, 20000, &textGen);
 
     // Initialise Coomer (as closed)
     Coomer coomer = Coomer(
@@ -88,8 +95,8 @@ int main()
     // Create shop button
     bn::sprite_ptr shopButtonSprite = bn::sprite_items::shop.create_sprite(MAIN_SHOP_POS_X, MAIN_SHOP_POS_Y);
 
-    // Main loop
-    while(true)
+    // Loop until we are going to shop
+    while (!goingToShop)
     {
         // Run Coomer update method
         coomer.update();
@@ -127,6 +134,7 @@ int main()
             shopButtonSprite = bn::sprite_items::shop_pressed.create_sprite(MAIN_SHOP_POS_X, MAIN_SHOP_POS_Y);
 
             // Switch to shop at some point
+            goingToShop = true;
         }
         // Otherwise if it's just been released
         else if (bn::keypad::b_released() && _bPressed)
@@ -164,10 +172,58 @@ int main()
             happinessText.decrementValueBy(DECREMENT_STATS_BY);
         }
 
+        // Backup values
+        _hungerValue = hungerText.getValue();
+        _thirstValue = thirstText.getValue();
+        _happinessValue = happinessText.getValue();
+        _playcoinsValue = playcoinsText.getValue();
+
         // Update window
         bn::core::update();
         
         // Run ticker
         _ticker++;
+    }
+
+    // When the variables fall out of scope, butano cleans everything up, so that's nice
+}
+
+void Run_Shop()
+{
+    // Setup shop scene
+    bool goingToMain = false;
+
+    // Loop until going to main
+    while (!goingToMain)
+    {
+        // Wait for a B press as part of this test
+        if (bn::keypad::b_pressed())
+        {
+            goingToMain = true;
+        }
+
+        // Window update
+        bn::core::update();
+    }
+
+    // Same cleanup as before
+}
+
+int main()
+{
+    // Begin
+    bn::core::init();
+
+
+    // Main loop
+    while(true)
+    {
+        // Start in main scene
+        Run_Main();
+
+        // Then go to shop
+        Run_Shop();
+
+        // Loop back to main
     }
 }
