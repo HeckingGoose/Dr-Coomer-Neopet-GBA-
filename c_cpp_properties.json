@@ -1,9 +1,13 @@
-"configurations": [
-    {
-        "name": "Default",
-        "includePath": [
-            "/butano",
-            "/include"
-        ]
-    }
-]
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${default}",
+                "butano/**",
+                "include/"
+            ]
+        }
+    ],
+    "version": 4
+}

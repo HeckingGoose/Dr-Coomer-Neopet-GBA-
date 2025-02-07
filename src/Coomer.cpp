@@ -1,14 +1,23 @@
 // Includes
 #include "Coomer.h"
 
+// Const
+const unsigned char COOMER_SPRITEWIDTH = 64;
+const short COOMER_POS_X = 30;
+const short COOMER_POS_Y = -10;
+
 // Implementations
 Coomer::Coomer(
-    LargeSprite closedSprite,
-    LargeSprite openSprite,
     unsigned int mouthTimerMax
     ) : 
-    _closedSprite(closedSprite), 
-    _openSprite(openSprite)
+    _sprite(LargeSprite(
+            bn::fixed_point(COOMER_POS_X, COOMER_POS_Y),
+            COOMER_SPRITEWIDTH,
+            bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
+            bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
+            bn::sprite_items::coomerclosed_bl.create_sprite(0,0),
+            bn::sprite_items::coomerclosed_br.create_sprite(0,0)
+            ))
 {
     // Set current sound handle to be null
     _soundEffect = NULL;
@@ -16,22 +25,43 @@ Coomer::Coomer(
     // Set mouth max timer
     _mouthTimerMax = mouthTimerMax;
 
-    // Force open sprite off screen
-    _openSprite.setPosition(bn::fixed_point(-300, -300));
+    // Set mouth to be closed
+    _mouthState = false;
 }
 
 void Coomer::swapState()
 {
-    // Cache closed and open mouth pos
-    bn::fixed_point closedTemp = _closedSprite.getPosition();
-    bn::fixed_point openTemp = _openSprite.getPosition();
-
-    // Swap positions
-    _closedSprite.setPosition(openTemp);
-    _openSprite.setPosition(closedTemp);
-
     // Swap bool
     _mouthState = !_mouthState;
+
+    // What state is the mouth in?
+    switch (_mouthState)
+    {
+        // Mouth is open
+        case true:
+            // Replace sprite
+            _sprite = LargeSprite(
+                bn::fixed_point(COOMER_POS_X, COOMER_POS_Y),
+                COOMER_SPRITEWIDTH,
+                bn::sprite_items::coomeropen_tl.create_sprite(0,0),
+                bn::sprite_items::coomeropen_tr.create_sprite(0,0),
+                bn::sprite_items::coomeropen_bl.create_sprite(0,0),
+                bn::sprite_items::coomeropen_br.create_sprite(0,0)
+                );
+            break;
+        // Mouth is closed
+        default:
+            // Replace sprite
+            _sprite = LargeSprite(
+                bn::fixed_point(COOMER_POS_X, COOMER_POS_Y),
+                COOMER_SPRITEWIDTH,
+                bn::sprite_items::coomerclosed_tl.create_sprite(0,0),
+                bn::sprite_items::coomerclosed_tr.create_sprite(0,0),
+                bn::sprite_items::coomerclosed_bl.create_sprite(0,0),
+                bn::sprite_items::coomerclosed_br.create_sprite(0,0)
+                );
+            break;
+    }
 }
 
 void Coomer::update()
