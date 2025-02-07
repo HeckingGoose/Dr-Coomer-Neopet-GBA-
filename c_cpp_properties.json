@@ -7,6 +7,22 @@
                 "butano/**",
                 "include/"
             ]
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "butano/**",
+                "include/"
+            ]
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${default}",
+                "butano/**",
+                "include/"
+            ]
         }
     ],
     "version": 4
