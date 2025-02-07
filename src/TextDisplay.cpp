@@ -70,6 +70,10 @@ void TextDisplay::init(
         // Make text
         _textGenHandle->generate(_position, "DEFAULT", _textStorage);
 
+        // Cap values
+        if (_value < _minValue) { _value = _minValue; }
+        else if (_value > _maxValue) { _value = _maxValue; }
+
         // Generate display text
         generateDisplay();
     }
